@@ -1,5 +1,6 @@
 import 'package:e_commerce_mobile_app/route/app_page.dart';
 import 'package:e_commerce_mobile_app/route/app_route.dart';
+import 'package:e_commerce_mobile_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      getPages: AppPage.List,
+      getPages: AppPage.list,
       initialRoute: AppRoute.dashboard,
+      theme: AppTheme.lightTheme,
+      themeMode: ThemeMode.light,
     );
   }
 }
