@@ -2,7 +2,9 @@ import 'package:e_commerce_mobile_app/component/main_header.dart';
 import 'package:e_commerce_mobile_app/controller/controllers.dart';
 import 'package:e_commerce_mobile_app/view/home/components/carousel_slider/carousel_loading.dart';
 import 'package:e_commerce_mobile_app/view/home/components/carousel_slider/carousel_slider_view.dart';
+import 'package:e_commerce_mobile_app/view/home/components/popular_category/popular_category.dart';
 import 'package:e_commerce_mobile_app/view/home/components/popular_category/popular_category_loading.dart';
+import 'package:e_commerce_mobile_app/view/home/components/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,10 +27,12 @@ class HomeScreen extends StatelessWidget {
               }
             },
           ),
+          const SectionTitle(title: "Popular Category"),
           Obx(
             () {
               if (homeController.popularCategoryList.isNotEmpty) {
-                return const PopularCategoryLoading();
+                return PopularCategory(
+                    categories: homeController.popularCategoryList);
               } else {
                 return const PopularCategoryLoading();
               }
