@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:e_commerce_mobile_app/model/ad_banner.dart';
 import 'package:e_commerce_mobile_app/model/category.dart';
 import 'package:e_commerce_mobile_app/service/remote_service/remote_banner_service.dart';
