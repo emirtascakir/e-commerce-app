@@ -1,7 +1,9 @@
 import 'package:e_commerce_mobile_app/model/ad_banner.dart';
 import 'package:e_commerce_mobile_app/model/category.dart';
+import 'package:e_commerce_mobile_app/model/product.dart';
 import 'package:e_commerce_mobile_app/service/remote_service/remote_banner_service.dart';
 import 'package:e_commerce_mobile_app/service/remote_service/remote_popular_category_service.dart';
+import 'package:e_commerce_mobile_app/service/remote_service/remote_popular_product_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -9,14 +11,17 @@ class HomeController extends GetxController {
   RxList<AdBanner> bannerList = List<AdBanner>.empty(growable: true).obs;
   RxList<Category> popularCategoryList =
       List<Category>.empty(growable: true).obs;
+  RxList<Product> popularProductList = List<Product>.empty(growable: true).obs;
   RxBool isBannerLoading = false.obs;
   RxBool isPopularCategoryLoading = false.obs;
+  RxBool isPopularProductLoading = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     getAdBanners();
     getPopularCategories();
+    getPopularProducts();
   }
 
   void getAdBanners() async {
@@ -40,6 +45,19 @@ class HomeController extends GetxController {
       }
     } finally {
       isPopularCategoryLoading(false);
+    }
+  }
+
+  void getPopularProducts() async {
+    try {
+      isPopularProductLoading(true);
+      final result = await RemotePopularProductsService().get();
+      if (result != null) {
+        popularProductList.assignAll(popularProductListFromJson(result.body));
+      }
+    } finally {
+      print(popularProductList.length);
+      isPopularProductLoading(false);
     }
   }
 }
