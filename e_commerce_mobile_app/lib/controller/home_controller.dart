@@ -56,7 +56,6 @@ class HomeController extends GetxController {
         popularProductList.assignAll(popularProductListFromJson(result.body));
       }
     } finally {
-      print(popularProductList.length);
       isPopularProductLoading(false);
     }
   }
