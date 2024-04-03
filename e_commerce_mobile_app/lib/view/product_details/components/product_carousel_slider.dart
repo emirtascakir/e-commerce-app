@@ -40,8 +40,6 @@ class _ProductCarouselSliderState extends State<ProductCarouselSlider> {
                             highlightColor: Colors.white,
                             baseColor: Colors.grey.shade300,
                             child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 20),
                               color: Colors.grey.shade300,
                             ),
                           ),
