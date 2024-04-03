@@ -1,4 +1,6 @@
+import 'package:e_commerce_mobile_app/controller/controllers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class MainHeader extends StatelessWidget {
   const MainHeader({super.key});
@@ -20,37 +22,60 @@ class MainHeader extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(24),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(24),
+                  ),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(.6),
+                        offset: const Offset(0, 0),
+                        blurRadius: 8),
+                  ],
                 ),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.grey.withOpacity(.6),
-                      offset: const Offset(0, 0),
-                      blurRadius: 8),
-                ],
-              ),
-              child: TextField(
-                autofocus: false,
-                onSubmitted: (value) {},
-                onChanged: (value) {},
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 16,
+                child: Obx(
+                  () => TextField(
+                    controller: productController.searchTextEditController,
+                    autofocus: false,
+                    onSubmitted: (value) {
+                      productController.getProductByName(keyword: value);
+                      dashboardController.updateIndex(1);
+                    },
+                    onChanged: (value) {
+                      productController.searchVal.value = value;
+                    },
+                    decoration: InputDecoration(
+                      suffixIcon: productController.searchVal.value.isNotEmpty
+                          ? IconButton(
+                              onPressed: () {
+                                FocusScope.of(context)
+                                    .requestFocus(FocusNode());
+                                productController.searchTextEditController
+                                    .clear();
+                                productController.searchVal.value = '';
+                                productController.getProducts();
+                              },
+                              icon: Icon(
+                                Icons.clear,
+                                color: Colors.grey.shade600,
+                              ))
+                          : null,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 16,
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(24),
+                        borderSide: BorderSide.none,
+                      ),
+                      hintText: "Search...",
+                      prefixIcon: const Icon(Icons.search),
                     ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(24),
-                      borderSide: BorderSide.none,
-                    ),
-                    hintText: "Search...",
-                    prefixIcon: const Icon(Icons.search)),
-              ),
-            ),
+                  ),
+                )),
           ),
           const SizedBox(width: 10),
           Container(

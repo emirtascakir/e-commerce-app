@@ -10,4 +10,10 @@ class RemoteProductService {
         await client.get(Uri.parse('$remoteUrl?populate=images,tags'));
     return response;
   }
+
+  Future<dynamic> getByName({required String keyword}) async {
+    final response = await client.get(Uri.parse(
+        '$remoteUrl?populate=images,tags&filters[name][\$contains]=$keyword'));
+    return response;
+  }
 }
