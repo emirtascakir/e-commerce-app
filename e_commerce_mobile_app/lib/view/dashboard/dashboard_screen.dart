@@ -1,4 +1,5 @@
 import 'package:e_commerce_mobile_app/controller/dashboard_controller.dart';
+import 'package:e_commerce_mobile_app/view/category/category_screen.dart';
 import 'package:e_commerce_mobile_app/view/home/home_screen.dart';
 import 'package:e_commerce_mobile_app/view/product/product_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,7 @@ class DashboardScreen extends StatelessWidget {
             children: [
               const HomeScreen(),
               const ProductScreen(),
-              Container(
-                color: Colors.pinkAccent,
-              ),
+              const CategoryScreen(),
               Container(
                 color: Colors.green,
               )
