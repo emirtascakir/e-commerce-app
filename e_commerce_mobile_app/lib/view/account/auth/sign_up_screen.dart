@@ -1,11 +1,11 @@
 import 'package:e_commerce_mobile_app/component/input_outline_button.dart';
 import 'package:e_commerce_mobile_app/component/input_text_button.dart';
 import 'package:e_commerce_mobile_app/component/input_text_field.dart';
-import 'package:e_commerce_mobile_app/view/account/auth/sign_up_screen.dart';
+import 'package:e_commerce_mobile_app/view/account/auth/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class SignInScreen extends StatelessWidget {
           children: [
             const Spacer(),
             const Text(
-              "Welcome,",
+              "Create Account,",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 32,
@@ -26,7 +26,7 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
             const Text(
-              "Sign in to continue!",
+              "Sign up to started!",
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 22,
@@ -35,27 +35,21 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
             const Spacer(flex: 3),
+            const InputTextField(title: "Full Name"),
+            const SizedBox(height: 15),
             const InputTextField(title: "E-mail"),
             const SizedBox(height: 15),
             const InputTextField(
-              title: "Password",
+              title: "Confirm Password",
               obsecureText: true,
             ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: const Text(
-                    'Forgot Password',
-                    style: TextStyle(fontSize: 12),
-                  ),
-                )
-              ],
+            const SizedBox(height: 15),
+            const InputTextField(
+              title: "Confirm Password",
+              obsecureText: true,
             ),
             const Spacer(),
-            InputTextButton(title: 'Sign In', onClick: () {}),
+            InputTextButton(title: 'Sign Up', onClick: () {}),
             const SizedBox(height: 10),
             InputOutlineButton(
               title: 'Back',
@@ -65,16 +59,16 @@ class SignInScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('I am new user'),
+                const Text('I am already a member'),
                 const SizedBox(width: 8),
                 InkWell(
                   onTap: () => Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SignUpScreen(),
+                        builder: (context) => const SignInScreen(),
                       )),
                   child: const Text(
-                    'Sign Up',
+                    'Sign In',
                     style: TextStyle(color: Colors.blue),
                   ),
                 )
