@@ -18,9 +18,7 @@ class RemoteAuthService {
 
   Future<dynamic> createProfile(
       {required String fullName, required String token}) async {
-    final body = {'fullName': fullName};
-    final response =
-        await client.post(Uri.parse('$baseUrl/api/profile/me'), headers: {
+    await client.post(Uri.parse('$baseUrl/api/profile/me'), headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token',
     });
@@ -35,8 +33,7 @@ class RemoteAuthService {
   }
 
   Future<dynamic> getProfile({required String token}) async {
-    final response =
-        await client.get(Uri.parse('$baseUrl/api/profile/me'), headers: {
+    await client.get(Uri.parse('$baseUrl/api/profile/me'), headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token',
     });
