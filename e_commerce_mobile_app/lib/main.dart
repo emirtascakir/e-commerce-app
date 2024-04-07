@@ -1,6 +1,7 @@
 import 'package:e_commerce_mobile_app/model/ad_banner.dart';
 import 'package:e_commerce_mobile_app/model/category.dart';
 import 'package:e_commerce_mobile_app/model/product.dart';
+import 'package:e_commerce_mobile_app/model/user.dart';
 import 'package:e_commerce_mobile_app/route/app_page.dart';
 import 'package:e_commerce_mobile_app/route/app_route.dart';
 import 'package:e_commerce_mobile_app/theme/app_theme.dart';
@@ -15,6 +16,7 @@ void main() async {
   Hive.registerAdapter(AdBannerAdapter());
   Hive.registerAdapter(CategoryAdapter());
   Hive.registerAdapter(ProductAdapter());
+  Hive.registerAdapter(UserAdapter());
   configLoading();
   runApp(const MyApp());
 }
